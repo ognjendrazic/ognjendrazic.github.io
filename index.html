@@ -1,61 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ognjen Drazic</title>
-<meta name="description" content="Ognjen Drazic, third-year Computer Engineering student at the University of Agder, Norway.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d1117'/><text x='6' y='22' font-family='monospace' font-size='16' fill='%233fb950'>&gt;_</text></svg>">
-<style>
-  :root { --bg:#0d1117; --panel:#161b22; --line:#30363d; --fg:#c9d1d9; --dim:#8b949e; --ok:#3fb950; --acc:#58a6ff; --warm:#f0883e; }
-  * { box-sizing: border-box; }
-  html, body { margin:0; background:var(--bg); color:var(--fg); }
-  body { font-family: "JetBrains Mono", "Fira Code", ui-monospace, Consolas, monospace; font-size:15px; line-height:1.6;
-         min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
-  main { width:100%; max-width:820px; }
-  .term { border:1px solid var(--line); border-radius:10px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.45); }
-  .bar { background:var(--panel); padding:10px 14px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--line); }
-  .dot { width:12px; height:12px; border-radius:50%; }
-  .bar span.t { flex:1; text-align:center; color:var(--dim); font-size:12px; margin-right:52px; }
-  .body { padding:20px 22px 26px; min-height:360px; }
-  .ln { margin:0; white-space:pre-wrap; word-break:break-word; opacity:0; }
-  .ln.on { opacity:1; }
-  .dim{color:var(--dim)} .ok{color:var(--ok)} .acc{color:var(--acc)} .warm{color:var(--warm)}
-  a { color:var(--acc); text-decoration:none; } a:hover { text-decoration:underline; }
-  .cur { display:inline-block; width:9px; height:1.1em; background:var(--fg); vertical-align:text-bottom; animation:blink 1s steps(1) infinite; }
-  @keyframes blink { 50% { opacity:0; } }
-  .gap { height:12px; }
-  @media (prefers-reduced-motion: reduce) { .ln { opacity:1; } .cur { animation:none; } }
-  @media (max-width:600px) { body { font-size:13px; padding:12px; } .bar span.t { display:none; } }
-</style>
-</head>
-<body>
-<main>
-  <div class="term" role="region" aria-label="About Ognjen Drazic">
-    <div class="bar">
-      <i class="dot" style="background:#ff5f56"></i><i class="dot" style="background:#ffbd2e"></i><i class="dot" style="background:#27c93f"></i>
-      <span class="t">ognjen@uia: ~ (serial /dev/ttyACM0 @ 115200)</span>
-    </div>
-    <div class="body" id="out">
-      <p class="ln dim">*** Booting Zephyr OS build v4.x ***</p>
-      <p class="ln"><span class="dim">[00:00:00.001]</span> <span class="ok">&lt;inf&gt;</span> user: name = <span class="acc">"Ognjen Drazic"</span></p>
-      <p class="ln"><span class="dim">[00:00:00.004]</span> <span class="ok">&lt;inf&gt;</span> user: role = <span class="acc">"3rd-year Computer Engineering @ University of Agder"</span></p>
-      <p class="ln"><span class="dim">[00:00:00.009]</span> <span class="ok">&lt;inf&gt;</span> user: location = <span class="acc">"Norway"</span></p>
-      <p class="ln"><span class="dim">[00:00:00.016]</span> <span class="ok">&lt;inf&gt;</span> stack: C/C++, JS/TS, RTOS, Python, .NET, React Native, Docker, Linux</p>
-      <p class="ln"><span class="dim">[00:00:00.025]</span> <span class="ok">&lt;inf&gt;</span> interests: embedded, RTOS, OS dev, DevOps</p>
-      <p class="ln"><span class="dim">[00:00:00.031]</span> <span class="warm">&lt;wrn&gt;</span> coffee: level low, continuing anyway</p>
-      <div class="gap"></div>
-      <p class="ln"><span class="ok">uart:~$</span> links</p>
-      <p class="ln">  github   <a href="https://github.com/ognjendrazic">github.com/ognjendrazic</a></p>
-      <div class="gap"></div>
-      <p class="ln"><span class="ok">uart:~$</span> <span class="cur"></span></p>
-    </div>
-  </div>
-</main>
-<script>
-  const lines = document.querySelectorAll('.ln');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  lines.forEach((el, i) => reduce ? el.classList.add('on') : setTimeout(() => el.classList.add('on'), 250 + i * 380));
-</script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ognjen Drazic</title>
+    <meta
+      name="description"
+      content="Ognjen Drazic, third-year Computer Engineering student at the University of Agder, Norway."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d1117'/><text x='6' y='22' font-family='monospace' font-size='16' fill='%233fb950'>&gt;_</text></svg>"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="term" role="region" aria-label="About Ognjen Drazic">
+        <div class="bar">
+          <i class="dot" style="background: #ff5f56"></i
+          ><i class="dot" style="background: #ffbd2e"></i
+          ><i class="dot" style="background: #27c93f"></i>
+          <span class="t">ognjen@uia: ~ (serial /dev/ttyACM0 @ 115200)</span>
+        </div>
+        <div class="body" id="out">
+          <p class="ln dim">*** Booting Zephyr OS build v4.x ***</p>
+          <p class="ln">
+            <span class="dim">[00:00:00.001]</span> <span class="ok">&lt;inf&gt;</span> user: name =
+            <span class="acc">"Ognjen Drazic"</span>
+          </p>
+          <p class="ln">
+            <span class="dim">[00:00:00.004]</span> <span class="ok">&lt;inf&gt;</span> user: role =
+            <span class="acc">"3rd-year Computer Engineering @ University of Agder"</span>
+          </p>
+          <p class="ln">
+            <span class="dim">[00:00:00.009]</span> <span class="ok">&lt;inf&gt;</span> user:
+            location = <span class="acc">"Norway"</span>
+          </p>
+          <p class="ln">
+            <span class="dim">[00:00:00.016]</span> <span class="ok">&lt;inf&gt;</span> stack:
+            C/C++, JS/TS, RTOS, Python, .NET, React Native, Docker, Linux
+          </p>
+          <p class="ln">
+            <span class="dim">[00:00:00.025]</span> <span class="ok">&lt;inf&gt;</span> interests:
+            embedded, RTOS, OS dev, DevOps
+          </p>
+          <p class="ln">
+            <span class="dim">[00:00:00.031]</span> <span class="warm">&lt;wrn&gt;</span> coffee:
+            level low, continuing anyway
+          </p>
+          <div class="gap"></div>
+          <p class="ln"><span class="ok">uart:~$</span> links</p>
+          <p class="ln">
+            github <a href="https://github.com/ognjendrazic">github.com/ognjendrazic</a>
+          </p>
+          <div class="gap"></div>
+          <p class="ln"><span class="ok">uart:~$</span> <span class="cur"></span></p>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
