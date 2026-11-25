@@ -23,13 +23,47 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+}
+.site-header,
+.site-footer {
+  width: 100%;
+  max-width: 868px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
   align-items: center;
+  gap: 12px;
+}
+.site-header {
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  color: var(--fg);
+  font-weight: 700;
+}
+.site-header nav {
+  display: flex;
+  gap: 20px;
+}
+.site-footer {
   justify-content: center;
-  padding: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--dim);
+  font-size: 13px;
 }
 main {
+  flex: 1;
   width: 100%;
-  max-width: 820px;
+  max-width: 868px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+}
+main > .term {
+  width: 100%;
 }
 .term {
   border: 1px solid var(--line);
@@ -63,8 +97,7 @@ main {
 }
 .ln {
   margin: 0;
-  white-space: pre-wrap;
-  word-break: break-word;
+  overflow-wrap: anywhere;
   opacity: 0;
 }
 .ln.on {
@@ -116,7 +149,13 @@ a:hover {
 @media (max-width: 600px) {
   body {
     font-size: 13px;
-    padding: 12px;
+  }
+  .site-header,
+  .site-footer {
+    padding: 14px 12px;
+  }
+  main {
+    padding: 20px 12px;
   }
   .bar span.t {
     display: none;
