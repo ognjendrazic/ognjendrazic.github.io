@@ -1,14 +1,16 @@
 # ognjendrazic.com
 
-Source for my personal site, built with [Vite+](https://viteplus.dev) and deployed to GitHub Pages at <https://ognjendrazic.com>.
+Source for my personal site, as an ASP.NET Core MVC app (.NET 10).
 
 ```sh
-npm install
-npm run dev      # local dev server with hot reload
-npm run check    # format, lint and type checks
-npm run build    # production build into dist/
-npm run preview  # serve the production build locally
+dotnet run
 ```
 
-Every push to `main` builds and deploys through `.github/workflows/deploy.yml`.
-Static files that must be copied as-is (`CNAME`, `404.html`) live in `public/`.
+| Path | What it is |
+| --- | --- |
+| `appsettings.json` | the site's content, in the `Profile` section |
+| `Controllers/HomeController.cs` | home page, status pages and error handling |
+| `Models/` | `Profile` (bound from config), view models |
+| `Views/Shared/_Layout.cshtml` | header, footer and page shell |
+| `Views/Home/Index.cshtml` | the terminal boot log on the home page |
+| `wwwroot/` | styles and the typing animation |

@@ -1,0 +1,23 @@
+@model HomeViewModel
+
+<div class="term" role="region" aria-label="About me">
+    <div class="bar">
+        <i class="dot" style="background: #ff5f56"></i><i class="dot" style="background: #ffbd2e"></i><i class="dot" style="background: #27c93f"></i>
+        <span class="t">ognjen@uia: ~ (serial /dev/ttyACM0 @@ 115200)</span>
+    </div>
+    <div class="body">
+        <p class="ln dim">*** Booting Zephyr OS build v4.x ***</p>
+        @foreach (var line in Model.BootLog)
+        {
+            <partial name="_LogLine" model="line" />
+        }
+        <div class="gap"></div>
+        <p class="ln"><span class="ok">uart:~$</span> links</p>
+        @foreach (var link in Model.Links)
+        {
+            <p class="ln">@link.Label.ToLowerInvariant() <a href="@link.Url">@link.DisplayUrl</a></p>
+        }
+        <div class="gap"></div>
+        <p class="ln"><span class="ok">uart:~$</span> <span class="cur"></span></p>
+    </div>
+</div>
