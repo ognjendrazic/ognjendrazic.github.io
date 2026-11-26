@@ -1,0 +1,67 @@
+name: Deploy to GitHub Pages
+
+# GitHub Pages can only serve static files, so this workflow runs the
+# ASP.NET Core app, saves the pages it renders as HTML and publishes those.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build and check formatting
+        run: |
+          dotnet build -warnaserror
+          dotnet format --verify-no-changes
+
+      - name: Publish the app
+        run: dotnet publish -c Release -o "$RUNNER_TEMP/publish"
+
+      - name: Render pages to static HTML
+        run: |
+          cd "$RUNNER_TEMP/publish"
+          ASPNETCORE_URLS=http://localhost:5000 dotnet OgnjenDrazic.Web.dll &
+          timeout 60 bash -c 'until curl -sf -o /dev/null http://localhost:5000/; do sleep 1; done'
+
+          mkdir -p "$RUNNER_TEMP/site"
+          cp -r wwwroot/. "$RUNNER_TEMP/site"/
+          # Pages serves its own compression, so the precompressed copies aren't needed.
+          find "$RUNNER_TEMP/site" \( -name '*.br' -o -name '*.gz' \) -delete
+
+          curl -sf http://localhost:5000/ -o "$RUNNER_TEMP/site/index.html"
+          curl -s http://localhost:5000/status/404 -o "$RUNNER_TEMP/site/404.html"
+          grep -q 'class="term"' "$RUNNER_TEMP/site/index.html"
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ runner.temp }}/site
+
+  deploy:
+    # Pull requests only check that the site builds; deploying happens on main.
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

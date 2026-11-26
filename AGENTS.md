@@ -14,6 +14,14 @@ Personal website for Ognjen Drazic, served at <https://ognjendrazic.com>. It is 
 - `Views/Home/`: `Index` (terminal boot log) and `Status` (error status page).
 - `wwwroot/css/site.css` and `wwwroot/js/site.js`: styles and the typing animation.
 - `Program.cs`: services, options binding and the request pipeline.
+- `.github/workflows/deploy.yml`: deploys to GitHub Pages on every push to `main`.
+
+## Hosting
+
+GitHub Pages only serves static files. The deploy workflow runs the app in CI, saves the rendered pages as HTML (`/` as `index.html`, `/status/404` as `404.html`) and publishes those with `wwwroot`. This means:
+
+- Pages are rendered once per deploy, not per request. Anything per-request (forms, logins, live data) won't work on the live site.
+- When you add a page, add a `curl` line for it in the "Render pages to static HTML" step of the workflow, or it won't be published.
 
 ## Commands
 
