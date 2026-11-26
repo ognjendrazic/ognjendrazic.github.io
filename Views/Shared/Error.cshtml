@@ -1,0 +1,12 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error · Ognjen Drazic";
+}
+
+<div>
+    <p><span class="err">&lt;err&gt;</span> something went wrong · <a asp-controller="Home" asp-action="Index">cd ~</a></p>
+    @if (Model.ShowRequestId)
+    {
+        <p class="dim">request id: <code>@Model.RequestId</code></p>
+    }
+</div>

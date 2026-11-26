@@ -1,0 +1,7 @@
+@model int
+@{
+    var message = Model == 404 ? "page not found" : $"request failed with status {Model}";
+    ViewData["Title"] = $"{Model} · Ognjen Drazic";
+}
+
+<p><span class="err">&lt;err&gt;</span> @message · <a asp-controller="Home" asp-action="Index">cd ~</a></p>

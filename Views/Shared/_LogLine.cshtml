@@ -1,0 +1,16 @@
+@model LogLine
+@{
+    var levelClass = Model.Level == "wrn" ? "warm" : "ok";
+}
+<p class="ln">
+    <span class="dim">[@Model.Timestamp]</span>
+    <span class="@levelClass">&lt;@Model.Level&gt;</span>
+    @if (Model.IsQuoted)
+    {
+        <text>@Model.Label = <span class="acc">"@Model.Value"</span></text>
+    }
+    else
+    {
+        <text>@Model.Label: @Model.Value</text>
+    }
+</p>

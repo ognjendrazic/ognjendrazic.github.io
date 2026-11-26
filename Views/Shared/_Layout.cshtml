@@ -1,0 +1,39 @@
+@inject IOptions<Profile> ProfileOptions
+@{
+    var profile = ProfileOptions.Value;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@(ViewData["Title"] ?? profile.Name)</title>
+    <meta name="description" content="@profile.Description" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d1117'/><text x='6' y='22' font-family='monospace' font-size='16' fill='%233fb950'>&gt;_</text></svg>" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" asp-controller="Home" asp-action="Index"><span class="ok">~/</span>ognjendrazic</a>
+        <nav aria-label="Main">
+            @foreach (var link in profile.Links)
+            {
+                <a href="@link.Url">@link.Label</a>
+            }
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <span>&copy; @DateTime.Now.Year @profile.Name</span>
+        <span class="sep">&middot;</span>
+        <a href="@profile.SourceUrl">Source</a>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
